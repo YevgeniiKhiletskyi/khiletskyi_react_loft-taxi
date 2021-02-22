@@ -6,7 +6,7 @@ jest.mock('./Header/Map', () => ({Map: () => <div>Map component</div>}))
 jest.mock('./Header/Profile', () => ({Map: () => <div>Profile component</div>}))
 jest.mock('./Header/Login', () => ({Map: () => <div>Login component</div>}))
 
-describe("App", () => {
+describe('App', () => {
   it.todo("renders correctly", () => {
     const {container} = render(<App />)
     expect(container.innerHTML).toMach("Map component")
@@ -18,7 +18,7 @@ describe("App", () => {
 
       fireEvent.click(getByText('Profile'))
       expect(container.innerHTML).toMatch("Profile component")
-      fireEvent.click(getByText('PLogin'))
+      fireEvent.click(getByText('Login'))
       expect(container.innerHTML).toMatch("Login component")
     })
   })
