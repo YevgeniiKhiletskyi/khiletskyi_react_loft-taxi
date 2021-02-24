@@ -2,21 +2,24 @@ import React from "react";
 import {Map} from './Header/Map/Map';
 import {Profile} from './Header/Profile/Profile';
 import {Login} from './Header/Login/Login';
+import {Registration} from './Header/Registration/Registration';
 import './App.css';
 
-const PAGES = {
-  map: <Map/>,
-  profile: <Profile/>,
-  login: <Login/>,
+// const PAGES = {
+//   map: <Map/>,
+//   profile: <Profile/>,
+//   login: <Login/> && 'login',
+//   registration: <Registration/>',
 
-}
+// }
 
 class App extends React.Component {
 
-  state = { curentPage: "home" }
+  state = { page: "home" }
 
-  navigateTo = (page) => {
-    this.setState({ curentPage: page });
+
+  navigateTo = (name) => {
+    this.setState({ page: name });
   };
 
   render() {
@@ -44,7 +47,11 @@ class App extends React.Component {
       </header>
       <main>
         <section>
-          {PAGES[this.state.curentPage]}
+          {this.state.page === 'map' && <Map />}
+          {this.state.page === 'profile' && <Profile />}
+          {this.state.page === 'login' && <Login navigateTo={this.navigateTo} />}
+          {this.state.page === 'registration' && <Registration navigateTo={this.navigateTo} />} 
+          {/* {PAGES[this.state.page]} */}
         </section>
       </main>
     </>
