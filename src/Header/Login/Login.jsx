@@ -42,27 +42,27 @@ export class Login extends React.Component {
         <div>
           <label htmlFor="email">
             Email:
-          <input
-            id="email"
-            type="email"
-            name="email"
-            size="28"
-            value={email}
-            onChange={this.handlEmailChange}
-          />
+            <input
+              id="email"
+              type="email"
+              name="email"
+              size="28"
+              value={email}
+              onChange={this.handlEmailChange}
+            />
           </label>
         </div>
         <div>
           <label htmlFor="password">
             Password:
-          <input
-            id="password"
-            type="password"
-            name="password"
-            size="28"
-            value={password}
-            onChange={this.handlePasswordChange}
-          />
+            <input
+              id="password"
+              type="password"
+              name="password"
+              size="28"
+              value={password}
+              onChange={this.handlePasswordChange}
+            />
           </label>
         </div>
         <div>
@@ -77,9 +77,12 @@ export class Login extends React.Component {
           </button>
         </div>
         <div>
-          <button onClick={this.onClick} type="submit" value="Submit">
+          <button 
+            onClick={this.onClick} 
+            type="submit" 
+            value="Submit">
             Submit
-        </button>
+          </button>
         </div>
       </form>
     </>
