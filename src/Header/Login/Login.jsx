@@ -53,7 +53,7 @@ export class Login extends React.Component {
           </label>
         </div>
         <div>
-          <lebel htmlFor="password">
+          <label htmlFor="password">
             Password:
           <input
             id="password"
@@ -63,7 +63,7 @@ export class Login extends React.Component {
             value={password}
             onChange={this.handlePasswordChange}
           />
-          </lebel>
+          </label>
         </div>
         <div>
           <label htmlFor="registration">

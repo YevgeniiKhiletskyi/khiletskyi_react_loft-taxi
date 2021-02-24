@@ -8,9 +8,8 @@ import './App.css';
 // const PAGES = {
 //   map: <Map/>,
 //   profile: <Profile/>,
-//   login: <Login/> && 'login',
-//   registration: <Registration/>',
-
+//   login: <Login/>,
+//   registration: <Registration/>,
 // }
 
 class App extends React.Component {

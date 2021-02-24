@@ -28,7 +28,7 @@ export class Registration extends React.Component {
           </label>
         </div>
         <div>
-          <lebel htmlFor="firstName">
+          <label htmlFor="firstName">
             FirstName:
           <input
             id="firstName"
@@ -36,10 +36,10 @@ export class Registration extends React.Component {
             name="firstName"
             size="28"
           />
-          </lebel>
+          </label>
         </div>
         <div>
-          <lebel htmlFor="lastName">
+          <label htmlFor="lastName">
             LastName:
           <input
             id="lastName"
@@ -47,7 +47,7 @@ export class Registration extends React.Component {
             name="lastName"
             size="28"
           />
-          </lebel>
+          </label>
         </div>
         <div>
         <label htmlFor="password">
