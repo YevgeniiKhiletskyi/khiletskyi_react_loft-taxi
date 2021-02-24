@@ -77,7 +77,7 @@ export class Login extends React.Component {
           </button>
         </div>
         <div>
-          <button  type="submit" value="Submit">
+          <button onClick={this.onClick} type="submit" value="Submit">
             Submit
         </button>
         </div>
