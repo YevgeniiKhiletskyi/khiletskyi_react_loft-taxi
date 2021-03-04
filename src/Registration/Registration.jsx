@@ -1,12 +1,17 @@
 import React from "react";
-
+import { withAuth } from '../Authorization/Authorization';
 
 
 export class Registration extends React.Component {
 
+  // goToProfile = event => {
+  //   event.preventDefault();
+  //   this.props.navigate('map');
+  // };
+
   onClick = event => {
     event.preventDefault();
-    this.props.navigateTo('map');
+    this.props.navigate('map');
   }
 
   render() {
@@ -70,3 +75,5 @@ export class Registration extends React.Component {
 };
 
 export default Registration;
+
+export const RegistrationWithAuth = withAuth(Registration)

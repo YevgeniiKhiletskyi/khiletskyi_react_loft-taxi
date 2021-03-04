@@ -1,24 +1,29 @@
 import React from "react";
-import {Map} from './Header/Map/Map';
-import {Profile} from './Header/Profile/Profile';
-import {Login} from './Header/Login/Login';
-import {Registration} from './Header/Registration/Registration';
+import { Map } from './Map/Map';
+import { ProfileWithAuth } from './Profile/Profile';
+import { LoginWithAuth } from './Login/Login';
+import { RegistrationWithAuth } from './Registration/Registration';
+import {withAuth} from './Authorization/Authorization';
 import './App.css';
 
-// const PAGES = {
-//   map: <Map/>,
-//   profile: <Profile/>,
-//   login: <Login/>,
-//   registration: <Registration/>,
-// }
+ const PAGES = {
+   map: (props) => <Map {...props} />,
+   profile: (props) => <ProfileWithAuth {...props} />,
+   login: (props) => <LoginWithAuth {...props} />,
+   registration: (props) => <RegistrationWithAuth {...props} />,
+};
 
 class App extends React.Component {
 
-  state = { page: "home" }
+  state = { page: "login" }
 
 
   navigateTo = (name) => {
-    this.setState({ page: name });
+    if (this.props.isLoggedIn) {
+      this.setState({ page: name });
+    }else {
+      this.setState({ page: 'login' });
+    }
   };
 
   render() {
@@ -27,34 +32,34 @@ class App extends React.Component {
         <nav>
           <ul>
             <li>
-              <button onClick={() => {this.navigateTo("map")}}>
+              <button onClick={() => { this.navigateTo("map") }}>
                 Map
-              </button>
+            </button>
             </li>
             <li>
-              <button onClick={() => {this.navigateTo("profile")}}>
+              <button onClick={() => { this.navigateTo("profile") }}>
                 Profile
-              </button>
+            </button>
             </li>
             <li>
-              <button onClick={() => {this.navigateTo("login")}}>
+              <button onClick={() => { this.navigateTo("login") }}>
                 Login
-              </button>
+            </button>
             </li>
           </ul>
         </nav>
       </header>
       <main>
         <section>
-          {this.state.page === 'map' && <Map />}
+          {/* {this.state.page === 'map' && <Map />}
           {this.state.page === 'profile' && <Profile />}
-          {this.state.page === 'login' && <Login navigateTo={this.navigateTo} />}
-          {this.state.page === 'registration' && <Registration navigateTo={this.navigateTo} />} 
-          {/* {PAGES[this.state.page]} */}
+          {this.state.page === 'login' && <LoginWithAuth navigateTo={this.navigateTo} />}
+          {this.state.page === 'registration' && <Registration navigateTo={this.navigateTo} />} */}
+          {PAGES[this.state.page]({navigate: this.navigateTo})}
         </section>
       </main>
     </>
   }
 }
 
-export default App;
+export default withAuth(App);
