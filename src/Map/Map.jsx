@@ -11,7 +11,7 @@ export class Map extends React.Component {
     this.map = new mapboxgl.Map({
       container: this.mapContainer.current,
       style: 'mapbox://styles/mapbox/streets-v11',
-      center: [33.432, 47.900],
+      center: [33.391, 47.910],
       zoom: 11,
     });
   }
