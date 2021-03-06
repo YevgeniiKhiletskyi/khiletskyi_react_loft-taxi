@@ -4,7 +4,7 @@ import {render} from '@testing-library/react'
 
 describe("login", () => {
   it("render correctly", () => {
-    const {getByLabelText} = render(<Login />)
+    const {getByLabelText} = render(<Login/>)
 
     expect(getByLabelText('Email: ')).toHaveAttribute('name', 'email')
     expect(getByLabelText('Password: ')).toHaveAttribute('name', 'password')

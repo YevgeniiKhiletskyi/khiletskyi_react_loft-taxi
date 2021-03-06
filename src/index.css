@@ -30,3 +30,16 @@ code {
 .mapboxgl-control-container {
   display: none;
 }
+
+ul {
+  background-color: #1C1A19;
+  display: flex;
+  justify-content: flex-end;
+  padding: 1%;
+  margin-block: 0;
+}
+
+li {
+  display: flex;
+  margin-right: 2%;
+}

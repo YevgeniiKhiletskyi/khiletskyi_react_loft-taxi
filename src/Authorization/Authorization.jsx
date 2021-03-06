@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export const Authorization = React.createContext()
 
@@ -6,15 +6,15 @@ export const AuthProvider = ({children}) => {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false)
 
   const logIn = (email, password) => {
-    if(email !== 'valid@email.com' || password !== 'correctpassword') {
-      return
+    if(email !== 'valid@email.com' || password !== '123') {
+      return;
     }
 
-    setIsLoggedIn(true)
+    setIsLoggedIn(true);
   };
 
   const logOut = () => {
-    setIsLoggedIn(false)
+    setIsLoggedIn(false);
   };
 
   return (
@@ -29,11 +29,9 @@ export const withAuth = (WrappedComponent) => {
     render() {
       return ( 
         <Authorization.Consumer>
-          {
-            (value) => {
-              return <WrappedComponent {...value} {...this.props} />
-            }
-          }
+          {(value) => {
+            return <WrappedComponent {...value} {...this.props} />
+          }}
         </Authorization.Consumer>
       );
     }
