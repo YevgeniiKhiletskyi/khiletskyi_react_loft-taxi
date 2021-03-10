@@ -29,6 +29,9 @@ export const theme = createMuiTheme({
       },
       MuiInput: {
         underline: {
+          width: '100%',
+          borderBottom: "2px solid #E4E4E4",
+          
           "&:after": {
             "border-bottom-color": "#1473e6"
           }
@@ -42,8 +45,11 @@ export const theme = createMuiTheme({
       },
       MuiButton: {
         root: {
-          textTransform: 'none'
-        },
+          textTransform: 'none',
+       },
+       primary: {
+        main: "red"
+      },
         containedPrimary: {
           boxShadow: "none",
           backgroundColor: "#ffc617",

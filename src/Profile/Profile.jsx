@@ -1,6 +1,8 @@
 import React from 'react';
 import { withAuth } from '../Authorization/Authorization';
-
+import { withStyles } from '@material-ui/core/styles';
+import Button from "@material-ui/core/Button";
+import styles from "../style";
 
 export class Profile extends React.Component {
 
@@ -11,13 +13,28 @@ export class Profile extends React.Component {
   };
 
   render() {
+
+    const { classes } = this.props;
     return (
       <>
-        <h1>Profile</h1>
-        <button onClick={this.unauthenticate}>Log out</button>
+        <div className={classes.section}>
+          <form
+            className={classes.form}>
+            <div>
+              <h1>Profile</h1>
+            </div>
+            <Button 
+              className={classes.btn}
+              variant="contained"
+              color="primary"
+              onClick={this.unauthenticate}>
+              Log out
+            </Button>
+          </form>
+        </div>
       </>
     );
   }
 }
 
-export const ProfileWithAuth = withAuth(Profile)
+export const ProfileWithAuth = withStyles(styles)(withAuth(Profile))

@@ -13,12 +13,20 @@ export const AuthProvider = ({children}) => {
     setIsLoggedIn(true);
   };
 
+  const registred = (email, firstName, lastName, password) => {
+    if(email !== 'valid@email.com' || firstName !== 'Bat' || lastName !== 'Man' || password !== '123') {
+      return;
+    }
+
+    setIsLoggedIn(true);
+  };
+
   const logOut = () => {
     setIsLoggedIn(false);
   };
 
   return (
-    <Authorization.Provider value={{logIn, logOut, isLoggedIn}}>
+    <Authorization.Provider value={{logIn,  registred, logOut, isLoggedIn}}>
       {children}
     </Authorization.Provider>
   );
