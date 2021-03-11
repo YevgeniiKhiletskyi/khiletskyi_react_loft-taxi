@@ -20,9 +20,6 @@ const PAGES = {
   registration: (props) => <RegistrationWithAuth {...props} />,
 };
 
-// const stylesBackground = {
-//   bacground: 
-// }
 
 class App extends React.Component {
 
@@ -76,9 +73,7 @@ class App extends React.Component {
           </nav>
         </header >
         <main>
-          
             {PAGES[this.state.page]({ navigate: this.navigateTo })}
-         
         </main>
       </>
     );
