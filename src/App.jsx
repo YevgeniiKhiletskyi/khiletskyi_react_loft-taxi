@@ -1,37 +1,16 @@
 import React from "react";
+import './App.css';
 import { Map } from './Map/Map';
 import { ProfileWithAuth } from './Profile/Profile';
 import { LoginWithAuth } from './Login/Login';
 import { RegistrationWithAuth } from './Registration/Registration';
-//import { withAuth } from './Authorization/Authorization';
-import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
-import Button from "@material-ui/core/Button";
-
-
-
-
-import './App.css';
-
-
-const PAGES = {
-  map: (props) => <Map {...props} />,
-  profile: (props) => <ProfileWithAuth {...props} />,
-  login: (props) => <LoginWithAuth {...props} />,
-  registration: (props) => <RegistrationWithAuth {...props} />,
-};
+import {connect} from 'react-redux';
+import { Link, Switch, Route } from "react-router-dom";
+import { PrivateRoute } from "./PrivateRoute";
 
 
 class App extends React.Component {
-
-  state = { page: 'login' }
-
-  navigateTo = (name) => {
-    if (this.props.isLoggedIn || name === 'login' || name === 'registration') {
-      this.setState({ page: name });
-    }
-
-  };
 
 
   render() {
@@ -46,34 +25,24 @@ class App extends React.Component {
           <nav>
             <ul>
               <li>
-                <Button
-                  variant="text"
-                  color="primary"
-                  onClick={this.navigateTo.bind(this, 'map')}>
-                  Map
-                </Button>
+                <Link to="/map">Map</Link>
               </li>
               <li>
-                <Button
-                  variant="text"
-                  color="primary"
-                  onClick={this.navigateTo.bind(this, 'profile')}>
-                  Profile
-                </Button>
+                <Link to="/profile">Profile</Link>
               </li>
               <li>
-                <Button
-                  variant="text"
-                  color="primary"
-                  onClick={this.navigateTo.bind(this, 'login')}>
-                  Log Out
-                </Button>
+                <Link to="/login">Login</Link>
               </li>
             </ul>
           </nav>
         </header >
         <main>
-          {PAGES[this.state.page]({ navigate: this.navigateTo })}
+          <Switch>
+            <PrivateRoute exact path="/map" component={Map} />
+            <PrivateRoute exact path="/profile" component={ProfileWithAuth} />
+            <Route exact path="/login" component={LoginWithAuth} />
+            <Route exact path="/registration" component={RegistrationWithAuth} />
+          </Switch>
         </main>
       </>
     );

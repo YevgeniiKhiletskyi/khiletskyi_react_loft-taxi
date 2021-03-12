@@ -1,32 +1,25 @@
 import React from 'react';
-//import { withAuth } from '../Authorization/Authorization';
-import {connect} from 'react-redux';
-import {logIn} from '../actions';
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import styles from "../style";
+import { Link } from 'react-router-dom';
+import {connect} from 'react-redux';
+import {aunthenticate} from '../actions';
 
 
 export class Login extends React.Component {
 
-  goToProfile = (event) => {
-    event.preventDefault();
-    this.props.navigate('profile');
-  };
-
   authenticate = (event) => {
     event.preventDefault()
     const { email, password } = event.target;
-    this.props.logIn(email.value, password.value);
+    this.props.aunthenticate(email.value, password.value);
   };
 
   
-
   render() {
    
-
     const { classes } = this.props;
     return (
       <>
@@ -34,13 +27,7 @@ export class Login extends React.Component {
         {this.props.isLoggedIn ? (
           <p>
             You are logged in 
-            <Button 
-              className={classes.btn}
-              variant="contained"
-              color="primary"
-              onClick={this.goToProfile}>
-              go to profile
-            </Button>
+            <Link to="/profile">go to profile</Link>
           </p>
         ) : (
             <form
@@ -87,14 +74,7 @@ export class Login extends React.Component {
                 <label htmlFor="login">
                   New Login?
                 </label>
-                <Button
-                  variant="text"
-                  color="primary"
-                  onClick={this.props.navigate.bind(this, 'registration')}
-                  type="button"
-                  value="Registration">
-                    Registration
-                </Button>
+                <Link to="/registration">Registration</Link>
               </div>
             </form>
           )}
@@ -112,7 +92,7 @@ Login.propTypes = {
 
 export const LoginWithAuth = withStyles(styles)(connect(
   (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-  {logIn} 
+  {aunthenticate} 
 )(Login))
 
 

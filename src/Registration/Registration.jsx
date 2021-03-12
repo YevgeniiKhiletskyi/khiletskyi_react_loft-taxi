@@ -1,25 +1,20 @@
 import React from "react";
-// import { withAuth } from '../Authorization/Authorization';
 import {connect} from 'react-redux';
-import {logIn} from '../actions';
+import {reg} from '../actions';
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import Input from "@material-ui/core/Input";
 import styles from "../style";
+import { Link } from "react-router-dom";
 
 
 export class Registration extends React.Component {
 
-  goToProfile = event => {
-    event.preventDefault();
-    this.props.navigate('profile');
-  };
-
   authenticate = (event) => {
     event.preventDefault()
     const { email, firstName, lastName, password } = event.target;
-    this.props.logIn(email.value, firstName.value, lastName.value, password.value);
+    this.props.reg(email.value, firstName.value, lastName.value, password.value);
   };
 
   render() {
@@ -31,13 +26,7 @@ export class Registration extends React.Component {
         {this.props.isLoggedIn ? (
           <p>
             You are logged in 
-            <Button 
-              className={classes.btn}
-              variant="contained"
-              color="primary"
-              onClick={this.goToProfile}>
-              go to profile
-            </Button>
+            <Link to="/profile">go to profile</Link>
           </p>
           ) : (
           <form
@@ -104,14 +93,7 @@ export class Registration extends React.Component {
               <label htmlFor="login">
                 Already Registered?
                 </label>
-              <Button
-                variant="text"
-                color="primary"
-                onClick={this.props.navigate.bind(this, 'login')}
-                type="button"
-                value="Sign in">
-                Sign in
-                </Button>
+                <Link to="/login"> Sign in</Link>
             </div>
           </form>
           )}
@@ -129,5 +111,5 @@ Registration.propTypes = {
 
 export const RegistrationWithAuth = withStyles(styles)(connect(
   (state) => ({isLoggedIn: state.auth.isLoggedIn}),
-  {logIn} 
+  {reg} 
 )(Registration))

@@ -1,5 +1,4 @@
 import React from 'react';
-//import { withAuth } from '../Authorization/Authorization';
 import {connect} from 'react-redux';
 import {logOut} from '../actions';
 import { withStyles } from '@material-ui/core/styles';
@@ -11,7 +10,6 @@ export class Profile extends React.Component {
   unauthenticate = (event) => {
     event.preventDefault();
     this.props.logOut();
-    this.props.navigate('login');
   };
 
   render() {
