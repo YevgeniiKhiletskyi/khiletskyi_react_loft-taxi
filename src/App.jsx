@@ -3,7 +3,8 @@ import { Map } from './Map/Map';
 import { ProfileWithAuth } from './Profile/Profile';
 import { LoginWithAuth } from './Login/Login';
 import { RegistrationWithAuth } from './Registration/Registration';
-import { withAuth } from './Authorization/Authorization';
+//import { withAuth } from './Authorization/Authorization';
+import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import Button from "@material-ui/core/Button";
 
@@ -34,8 +35,7 @@ class App extends React.Component {
 
 
   render() {
-
-
+    
     return (
       <>
         <header>
@@ -66,14 +66,14 @@ class App extends React.Component {
                   variant="text"
                   color="primary"
                   onClick={this.navigateTo.bind(this, 'login')}>
-                  Login
+                  Log Out
                 </Button>
               </li>
             </ul>
           </nav>
         </header >
         <main>
-            {PAGES[this.state.page]({ navigate: this.navigateTo })}
+          {PAGES[this.state.page]({ navigate: this.navigateTo })}
         </main>
       </>
     );
@@ -84,4 +84,6 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool
 };
 
-export default withAuth(App);
+export default connect(
+  state => ({isLoggedIn: state.auth.isLoggedIn})
+)(App);

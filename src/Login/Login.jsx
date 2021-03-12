@@ -1,5 +1,7 @@
 import React from 'react';
-import { withAuth } from '../Authorization/Authorization';
+//import { withAuth } from '../Authorization/Authorization';
+import {connect} from 'react-redux';
+import {logIn} from '../actions';
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
@@ -20,9 +22,10 @@ export class Login extends React.Component {
     this.props.logIn(email.value, password.value);
   };
 
-
+  
 
   render() {
+   
 
     const { classes } = this.props;
     return (
@@ -107,6 +110,9 @@ Login.propTypes = {
   navigate: PropTypes.func,
 };
 
-export const LoginWithAuth = withStyles(styles)(withAuth(Login))
+export const LoginWithAuth = withStyles(styles)(connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  {logIn} 
+)(Login))
 
 

@@ -1,5 +1,7 @@
 import React from 'react';
-import { withAuth } from '../Authorization/Authorization';
+//import { withAuth } from '../Authorization/Authorization';
+import {connect} from 'react-redux';
+import {logOut} from '../actions';
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
 import styles from "../style";
@@ -37,4 +39,7 @@ export class Profile extends React.Component {
   }
 }
 
-export const ProfileWithAuth = withStyles(styles)(withAuth(Profile))
+export const ProfileWithAuth = withStyles(styles)(connect(
+  null,
+  {logOut}
+)(Profile))

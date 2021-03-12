@@ -1,5 +1,7 @@
 import React from "react";
-import { withAuth } from '../Authorization/Authorization';
+// import { withAuth } from '../Authorization/Authorization';
+import {connect} from 'react-redux';
+import {logIn} from '../actions';
 import { PropTypes } from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import Button from "@material-ui/core/Button";
@@ -17,7 +19,7 @@ export class Registration extends React.Component {
   authenticate = (event) => {
     event.preventDefault()
     const { email, firstName, lastName, password } = event.target;
-    this.props.registred(email.value, firstName.value, lastName.value, password.value);
+    this.props.logIn(email.value, firstName.value, lastName.value, password.value);
   };
 
   render() {
@@ -125,4 +127,7 @@ Registration.propTypes = {
   navigate: PropTypes.func,
 };
 
-export const RegistrationWithAuth = withStyles(styles)(withAuth(Registration))
+export const RegistrationWithAuth = withStyles(styles)(connect(
+  (state) => ({isLoggedIn: state.auth.isLoggedIn}),
+  {logIn} 
+)(Registration))
